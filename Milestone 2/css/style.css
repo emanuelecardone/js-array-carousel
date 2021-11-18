@@ -1,3 +1,6 @@
+img{
+    object-fit: cover;
+}
 [class*="fa-chevron-"]{
     left: 50%;
     transform: translateX(-50%);
@@ -14,6 +17,11 @@
     filter: brightness(60%);
 }
 .thumbs_box.active{
-    border: 2px solid white;
+    border: 3px solid white;
     filter: brightness(100%);
+}
+.paragraph_container{
+    bottom: 5%;
+    right: 2%;
+    overflow-y: auto;
 }

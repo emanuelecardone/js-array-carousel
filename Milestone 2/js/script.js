@@ -28,15 +28,19 @@ const text = [
 // Creo le variabili per gli oggetti attivi e le freccette
 const selectedWrapper = document.querySelector('.selected_img_box');
 const thumbsWrapper = document.querySelector('.thumbs_wrapper');
-let activeItem = 1;
+let activeItem = 0;
 const activeImage = `<img class="w-100 h-100" src="${items[activeItem]}" alt="Immagine ${activeItem}"></img>`;
-const activeTitle = `<h4 class="position-absolute bottom-0 end-0 mb-5 me-3 fs-4">${title[activeItem]}</h4>`;
-const activeParagraph = `<p class="position-absolute bottom-0 end-0 mb-4 me-3 fs-5">${text[activeItem]}</p>`;
+const activeParagraph = `
+<div class="paragraph_container position-absolute d-flex flex-column align-items-end">
+    <h4 class="fs-4">${title[activeItem]}</h4>
+    <p class="fs-6 text-end">${text[activeItem]}</p>
+</div>    
+`;
 const upArrow = `<i class="fas fa-chevron-up position-absolute bg-light p-1 rounded-circle"></i>`;
 const downArrow = `<i class="fas fa-chevron-down position-absolute bg-light p-1 rounded-circle"></i>`;
 
 // Aggiungo le freccette e l'immagine a sinistra
-selectedWrapper.innerHTML += activeImage + activeTitle + activeParagraph;
+selectedWrapper.innerHTML += activeImage + activeParagraph;
 thumbsWrapper.innerHTML += upArrow + downArrow;
 
 for(i = 0; i < items.length; i++){
