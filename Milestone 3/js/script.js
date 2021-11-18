@@ -28,7 +28,6 @@ const text = [
 // Creo le variabili per gli oggetti attivi e le freccette
 const selectedWrapper = document.querySelector('.selected_img_box');
 const thumbsWrapper = document.querySelector('.thumbs_wrapper');
-let activeItem = 1;
 const upArrow = `<i class="fas fa-chevron-up position-absolute bg-light p-1 rounded-circle"></i>`;
 const downArrow = `<i class="fas fa-chevron-down position-absolute bg-light p-1 rounded-circle"></i>`;
 
@@ -38,11 +37,11 @@ thumbsWrapper.innerHTML += upArrow + downArrow;
 for(i = 0; i < items.length; i++){
 
     // Aggiungo le immagini e i testi a sinistra (avranno display none di default che cambierò dopo con la classe active)
-    const currentImageLeft = `<img class="left_img w-100 h-100" src="${items[activeItem]}" alt="Immagine ${activeItem}"></img>`;
+    const currentImageLeft = `<img class="left_img w-100 h-100" src="${items[i]}" alt="Immagine ${i+1}"></img>`;
     const currentParagraph = `
-        <div class="paragraph_container position-absolute d-flex flex-column align-items-end">
-            <h4 class="fs-4">${title[activeItem]}</h4>
-            <p class="fs-6 text-end">${text[activeItem]}</p>
+        <div class="paragraph_container position-absolute flex-column align-items-end">
+            <h4 class="fs-4">${title[i]}</h4>
+            <p class="fs-6 text-end">${text[i]}</p>
         </div>    
     `;
     selectedWrapper.innerHTML += currentImageLeft + currentParagraph;
@@ -60,15 +59,14 @@ for(i = 0; i < items.length; i++){
 
 
 // Do l'active alle immagini attive
+let activeItem = 1;
 const imageBoxes = document.getElementsByClassName('thumbs_box');
 const leftImages = document.getElementsByClassName('left_img');
 const leftParagraphes = document.getElementsByClassName('paragraph_container');
-const activeImageBox = imageBoxes[activeItem];
-const activeLeftImage = leftImages[activeItem];
-const activeLeftParagraph = leftParagraphes[activeItem]; 
-activeImageBox.classList.add('active');
-activeLeftImage.classList.add('active');
-activeLeftParagraph.classList.add('active'); 
+
+imageBoxes[activeItem].classList.add('active');
+leftImages[activeItem].classList.add('active');
+leftParagraphes[activeItem].classList.add('active'); 
 
 
 // SEZIONE CLICK
@@ -79,10 +77,42 @@ const downArrowClick = document.querySelector('.fa-chevron-down');
 
 // Up click 
 upArrowClick.addEventListener('click', function(){
-    
+
+    console.log(activeItem);
+
+    imageBoxes[activeItem].classList.remove('active');
+    leftImages[activeItem].classList.remove('active');
+    leftParagraphes[activeItem].classList.remove('active'); 
+
+
+    if(activeItem > 0){
+        activeItem--;
+    } else{
+        activeItem = items.length - 1;
+    }
+
+    imageBoxes[activeItem].classList.add('active');
+    leftImages[activeItem].classList.add('active');
+    leftParagraphes[activeItem].classList.add('active'); 
 });
 
 // Down click
 downArrowClick.addEventListener('click', function(){
 
+    console.log(activeItem);
+
+    imageBoxes[activeItem].classList.remove('active');
+    leftImages[activeItem].classList.remove('active');
+    leftParagraphes[activeItem].classList.remove('active'); 
+
+
+    if(activeItem < items.length - 1){
+        activeItem++;
+    } else{
+        activeItem = 0;
+    }
+
+    imageBoxes[activeItem].classList.add('active');
+    leftImages[activeItem].classList.add('active');
+    leftParagraphes[activeItem].classList.add('active');
 });

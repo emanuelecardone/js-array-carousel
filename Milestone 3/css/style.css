@@ -4,8 +4,11 @@ img{
 .selected_img_box > *{
     display: none;
 }
-.selected_img_box > *.active{
+.selected_img_box > img.active{
     display: block;
+}
+.selected_img_box > .paragraph_container.active{
+    display: flex;
 }
 [class*="fa-chevron-"]{
     left: 50%;
