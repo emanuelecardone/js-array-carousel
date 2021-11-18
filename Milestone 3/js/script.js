@@ -25,38 +25,41 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ]
 
-// Creo le variabili per gli oggetti attivi e le freccette
+// Creo le variabili per i contenitori
 const selectedWrapper = document.querySelector('.selected_img_box');
 const thumbsWrapper = document.querySelector('.thumbs_wrapper');
-const upArrow = `<i class="fas fa-chevron-up position-absolute bg-light p-1 rounded-circle"></i>`;
-const downArrow = `<i class="fas fa-chevron-down position-absolute bg-light p-1 rounded-circle"></i>`;
 
 // Aggiungo le freccette
-thumbsWrapper.innerHTML += upArrow + downArrow;
+thumbsWrapper.innerHTML += `
+<i class="fas fa-chevron-up position-absolute bg-light p-1 rounded-circle"></i>
+` + `
+<i class="fas fa-chevron-down position-absolute bg-light p-1 rounded-circle"></i>
+`;
 
 for(i = 0; i < items.length; i++){
 
-    // Aggiungo le immagini e i testi a sinistra (avranno display none di default che cambierò dopo con la classe active)
+    // Creo le variabili per i vari contenuti da aggiungere
+
+    // Left
     const currentImageLeft = `<img class="left_img w-100 h-100" src="${items[i]}" alt="Immagine ${i+1}"></img>`;
     const currentParagraph = `
         <div class="paragraph_container position-absolute flex-column align-items-end">
-            <h4 class="fs-4">${title[i]}</h4>
-            <p class="fs-6 text-end">${text[i]}</p>
+            <h4 class="fs_25">${title[i]}</h4>
+            <p class="fs_15 text-end">${text[i]}</p>
         </div>    
     `;
-    selectedWrapper.innerHTML += currentImageLeft + currentParagraph;
-
-    const currentImage = `
+    // Right
+    const currentThumb = `
     <div class="thumbs_box w-100 h_20">
         <img class="w-100 h-100" src="${items[i]}" alt="Immagine ${i+1}"> 
     </div>
     `; // Messo il +1 per far si che la prima immagine cioè la numero 0 risulti come numero 1 etc
-    
-    // Riempio le thumbnails a destra (dichiarato la thumbsWrapper prima del for per riempirla con le freccette)
-    thumbsWrapper.innerHTML += currentImage;   
+
+    // Riempio i contenitori
+    selectedWrapper.innerHTML += currentImageLeft + currentParagraph;
+    thumbsWrapper.innerHTML += currentThumb;   
 
 }
-
 
 // Do l'active alle immagini attive
 let activeItem = 1;
@@ -71,20 +74,18 @@ leftParagraphes[activeItem].classList.add('active');
 
 // SEZIONE CLICK
 
-// Devo creare 2 nuove variabili in quanto quando ho dichiarato upArrow e downArrow esse non erano presenti in html (sono state pushate dopo)
-const upArrowClick = document.querySelector('.fa-chevron-up');
-const downArrowClick = document.querySelector('.fa-chevron-down');
+// Creo le variabili per le arrows inserite prima
+const upArrow = document.querySelector('.fa-chevron-up');
+const downArrow = document.querySelector('.fa-chevron-down');
 
 // Up click 
-upArrowClick.addEventListener('click', function(){
-
-    console.log(activeItem);
+upArrow.addEventListener('click', function(){
 
     imageBoxes[activeItem].classList.remove('active');
     leftImages[activeItem].classList.remove('active');
     leftParagraphes[activeItem].classList.remove('active'); 
 
-
+    // Se non si trova alla prima immagine, si muove scendendo di 1, altrimenti torna all'ultima immagine ricominciando il giro
     if(activeItem > 0){
         activeItem--;
     } else{
@@ -97,15 +98,13 @@ upArrowClick.addEventListener('click', function(){
 });
 
 // Down click
-downArrowClick.addEventListener('click', function(){
-
-    console.log(activeItem);
+downArrow.addEventListener('click', function(){
 
     imageBoxes[activeItem].classList.remove('active');
     leftImages[activeItem].classList.remove('active');
     leftParagraphes[activeItem].classList.remove('active'); 
 
-
+    // Se non si trova all'ultima'immagine, si muove salendo di 1, altrimenti torna alla prima immagine ricominciando il giro
     if(activeItem < items.length - 1){
         activeItem++;
     } else{
