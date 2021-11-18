@@ -28,7 +28,7 @@ const text = [
 // Creo le variabili per gli oggetti attivi e le freccette
 const selectedWrapper = document.querySelector('.selected_img_box');
 const thumbsWrapper = document.querySelector('.thumbs_wrapper');
-let activeItem = 0;
+let activeItem = 1;
 const activeImage = `<img class="w-100 h-100" src="${items[activeItem]}" alt="Immagine ${activeItem}"></img>`;
 const activeParagraph = `
 <div class="paragraph_container position-absolute d-flex flex-column align-items-end">
