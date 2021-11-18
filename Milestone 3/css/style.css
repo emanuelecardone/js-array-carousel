@@ -1,0 +1,33 @@
+img{
+    object-fit: cover;
+}
+.selected_img_box > *{
+    display: none;
+}
+.selected_img_box > *.active{
+    display: block;
+}
+[class*="fa-chevron-"]{
+    left: 50%;
+    transform: translateX(-50%);
+    /* Lo z-index l'ho messo altrimenti spariscono quando abbasso la luminosità alle immagini */
+    z-index: 10;
+}
+.fa-chevron-up{
+    top: 15px;
+}
+.fa-chevron-down{
+    bottom: 15px;
+}
+.thumbs_box{
+    filter: brightness(60%);
+}
+.thumbs_box.active{
+    border: 3px solid white;
+    filter: brightness(100%);
+}
+.paragraph_container{
+    bottom: 5%;
+    right: 2%;
+    overflow-y: auto;
+}
