@@ -36,7 +36,7 @@ thumbsWrapper.innerHTML += `
 <i class="fas fa-chevron-down position-absolute bg-light p-1 rounded-circle"></i>
 `;
 
-for(i = 0; i < items.length; i++){
+for(let i = 0; i < items.length; i++){
 
     // Creo le variabili per i vari contenuti da aggiungere
 
